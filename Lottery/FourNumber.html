@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>4号码抽奖箱</title>
+    <script type="text/javascript" src="js/jquery-1.7.2-min.js"></script>
+    <script type="text/javascript" src="js/easing.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/fottery.css">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+</head>
+
+<body>
+    <div class="main_bg">
+        <div class="main">
+            <!-- <div id="res" style="text-align:center;color:#fff;padding-top:15px;"></div> -->
+            <!-- <div class="num_mask"></div> -->
+            <div id="js-toggle" class="toggle">准备</div>
+            <div class="num_box">
+                <div class="num"></div>
+                <div class="num"></div>
+                <div class="num"></div>
+                <div class="num"></div>
+                <div id="js-getNum" class="btn-action">开始抽奖</div>
+                <div id="js-right" class="btn-right">中奖了</div>
+                <div id="js-pass" class="btn-pass">跳过</div>
+                <audio src="four1.mp3" id="js-audio" style="display: none;"></audio>
+            </div>
+            <table id="js-infor" class="win-info" cellpadding="2">
+                <tr class="winTitle">
+                    <th colspan="2">获奖信息</th>
+                </tr>
+            </table>
+            <table id="js-passInfor" class="pass-info" cellpadding="2">
+                <tr class="winTitle">
+                    <th colspan="2">缺席信息</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/FourNumber.js"></script>
+    <script type="text/javascript">
+    !(function() {
+        let ex = [202, 304, 642];
+        /**
+         * Flottery(limit,ex)
+         *@param {Number} u 是否启用单数方式
+         *@param {Number} limit 人数上限
+         *@param {Number} ex 已抽过的号码
+         *
+         */
+        let f = Flottery(null, 879, ex);
+        $("#js-right").on("click", function() {
+
+            /**
+             * f.getResult(); 点击中奖按钮确认中奖 result保存输出结果
+             *
+             * result={
+             *    winner, 确认获奖号码
+             *    existed 已经抽过的号码，包含未出席人号码
+             * }
+             */
+            let result = f.getResult();
+        });
+        $('#js-pass').on("click",function(){
+            let a = f.passNumber();
+            console.log('缺席',a)
+        })
+        
+    })()
+    </script>
+</body>
+
+</html>

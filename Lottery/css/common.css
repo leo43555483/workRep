@@ -1,0 +1,101 @@
+.btn-right,
+.btn-pass {
+    position: absolute;
+    text-align: center;
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    left: 0;
+    bottom: 50px;
+    cursor: pointer;
+    clear: both;
+    background: #ffb700;
+    border-radius: 50%;
+    font-size: 24px;
+    color: #000000;
+}
+
+.btn-right {
+    left: 84%;
+    margin-left: -80px;
+}
+
+.pass-info,
+.win-info {
+    position: absolute;
+    width: 20%;
+    color: #ffb700;
+    bottom: 300px;
+    border: 1px solid #fff;
+    text-align: center;
+}
+
+.pass-info {
+    left: 80%;
+    color: #fff;
+}
+
+.pass-info tr th,
+.win-info tr th {
+    font-size: 16px;
+    line-height: 16px;
+    height: 16px;
+}
+
+.win-info tr th {
+    background: rgba(255, 43, 43, .7);
+}
+
+.win-info tr td {
+    width: 50%;
+    background: rgba(255, 43, 43, .7);
+    color: #ffb700;
+}
+
+.pass-info tr td {
+    width: 50%;
+    background: rgba(255, 245, 245, .7);
+    color: #000000;
+}
+
+.btn-action {
+    background: #ffb700;
+    width: 264px;
+    height: 89px;
+    line-height: 89px;
+    position: absolute;
+    color: #000000;
+    left: 50%;
+    bottom: 50px;
+    margin-left: -132px;
+    cursor: pointer;
+    clear: both;
+    border-radius: 50px;
+    font-size: 24px;
+    font-weight: 600;
+    box-shadow: 0 0 10px #000000;
+}
+
+.toggle {
+    width: 40px;
+    border: 1px solid #ffb700;
+    text-align: center;
+    cursor: pointer;
+    color: #fff;
+}
+
+.btn-pass {
+    left: 88%;
+    background: #fff;
+
+}
+
+.num-1 {
+    position: absolute;
+    left: 50%;
+    width: 170px;
+    height: 245px;
+    float: left;
+    margin-left: -85px;
+    background: url(../images/num.png) top center repeat-y;
+}
