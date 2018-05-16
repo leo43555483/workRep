@@ -1,0 +1,48 @@
+
+CALIS高校学位论文库$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=65&&
+Apabi教参类电子图书$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=52&&
+Apabi电子图书$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=66&&
+《瀚堂典藏》古籍数据库$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=66&&
+万方数据知识服务平台$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=35&&
+中国生物医学文献数据库$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=4&&
+中国资讯行（China InfoBank）$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=9&&
+中文社会科学引文索引（CSSCI）$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=57&&
+中文科技期刊数据库$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=3&&
+中国（CNKI）学术文献总库$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=2&&
+中经网$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=113&&
+全国高校专利信息服务平台系统$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=97&&
+北大法意网$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=124&&
+国泰安csmar数据库$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=120&&
+爱迪科森《网上报告厅》$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=50&&
+超星数字图书馆$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=1&&
+高校教参数据库$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=59&&
+
+AIP、APS$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=58&&
+ASP（EBSCO）$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=7&&
+CALIS西文期刊目次数据库(CCC)$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=60&&
+EconLit with Full Text$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=110&&
+Emerald回溯内容全国在线$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=132&&
+Encyclopedia Britannica Online$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=6&&
+Engineering Village 2$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=13&&
+HeinOnline$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=15&&
+IEEE/IET(IEL)$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=14&&
+JSTOR$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=70&&
+Kluwer Online$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=20&&
+LWW$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=207&&
+MEDLINE$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=21&&
+Nature$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=22&&
+NSTL订购电子期刊$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=71&&
+OCLC FirstSearch$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=90&&
+OSA数据库$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=199&&
+RSC$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=157&&
+Science Online$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=28&&
+SciFinder Scholar$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=98&&
+SIAM全文电子期刊$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=119&&
+Springer Link电子期刊及电子图书$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=31&&
+Taylor & Francis期刊数据库$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=130&&
+WorldSciNet$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=32&&
+美星外文数字图书馆$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=54&&
+Kluwer Online$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=20&&
+
+
+Frontiers期刊数据库$http://www.lib.sdu.edu.cn/portal/tpl/home/elec_detail?id=217
