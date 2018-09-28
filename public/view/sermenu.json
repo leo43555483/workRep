@@ -1,0 +1,119 @@
+[
+    {
+        "children": [
+            {
+                "id": "service-11",
+                "text": "基礎平臺",
+                "type": "person"
+            },
+            {
+                "id": "service-12",
+                "text": "資訊",
+                "type": "person"
+            },
+            {
+                "id": "service-15",
+                "text": "公文",
+                "type": "person"
+            },
+            {
+                "id": "service-17",
+                "text": "文檔",
+                "type": "person"
+            },
+            {
+                "id": "service-25",
+                "text": "請假",
+                "type": "person"
+            },
+            {
+                "id": "service-26",
+                "text": "加班",
+                "type": "person"
+            },
+            {
+                "id": "service-37",
+                "text": "合同",
+                "type": "person"
+            },
+            {
+                "id": "service-40",
+                "text": "接待",
+                "type": "person"
+            },
+            {
+                "id": "service-44",
+                "text": "會議",
+                "type": "person"
+            },
+            {
+                "id": "service-45",
+                "text": "資產",
+                "type": "person"
+            },
+            {
+                "id": "service-46",
+                "text": "會議室",
+                "type": "person"
+            },
+            {
+                "id": "service-47",
+                "text": "API",
+                "type": "person"
+            }
+        ],
+        "id": "application-18",
+        "text": "办公平台",
+        "type": "department"
+    },
+    {
+        "children": [],
+        "id": "application-16",
+        "text": "spu",
+        "type": "department"
+    },
+    {
+        "children": [],
+        "id": "application-17",
+        "text": "member",
+        "type": "department"
+    },
+    {
+        "children": [
+            {
+                "id": "service-41",
+                "text": "統一認證",
+                "type": "person"
+            },
+            {
+                "id": "service-8",
+                "text": "統一授權",
+                "type": "person"
+            },
+            {
+                "id": "service-36",
+                "text": "統一數據",
+                "type": "person"
+            },
+            {
+                "id": "service-42",
+                "text": "統一報表",
+                "type": "person"
+            },
+            {
+                "id": "service-43",
+                "text": "統一日志",
+                "type": "person"
+            }
+        ],
+        "id": "application-14",
+        "text": "数据中心",
+        "type": "department"
+    },
+    {
+        "children": [],
+        "id": "application-15",
+        "text": "mian-server",
+        "type": "department"
+    }
+]

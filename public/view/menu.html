@@ -1,0 +1,151 @@
+<div class="panel panel-box">
+    <div class="panel-heading tit_big">
+        <span class="t">崗位詳細</span>
+        <div class="filter">
+            <span class="item">
+
+                <a href="./post_edite.html" class="xin_box submit">編輯</a>
+
+                <a onclick="layer.alert('該崗位存在下級，不允許刪除！', { icon: 2, skin: 'layer-ext-moon' });" class="cancel">刪除</a>
+
+                <a href="./post_auth_edit.html" class="set_btn cancel">權限設置</a>
+
+            </span>
+
+        </div>
+    </div>
+    <div class="panel-body scrollbar">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">1</div>
+                    <div class="panel-body">
+                        <ul class="formlist formlist_np">
+                            <li class="item">
+                                <div class="item_in">
+                                    <span class="label" style="width:130px;">崗位編碼：</span>
+                                    <span>1</span>
+                                </div>
+                            </li>
+                            <li class="item">
+                                <div class="item_in">
+                                    <span class="label">崗位名稱：</span>
+                                    <span>1</span>
+                                </div>
+                            </li>
+                            <li class="item">
+                                <div class="item_in">
+                                    <span class="label">角色：</span>
+                                    <span>校长</span>
+                                </div>
+                            </li>
+                            <li class="item">
+                                <div class="item_in">
+                                    <span class="label">上級崗位：</span>
+                                    <span>
+                                        <fmt:message key="nothing" /></span>
+                                </div>
+                            </li>
+                            <li class="item">
+                                <div class="item_in">
+                                    <span class="label">下级岗位：</span>
+                                    <span>
+                                        2
+                                    </span>
+                                </div>
+                            </li>
+                            <li class="item">
+                                <div class="item_in">
+                                    <span class="label">崗位描述：</span>
+                                    <span></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading tit_big">
+                        用户列表
+                        <span class="ctrl_r">
+                            <a href="#" class="ico_edit" id="userEdit"></a>
+                        </span>
+                    </div>
+                    <div class="panel-body">
+                        <div class="userbox_1">
+                            <div class="tab_show">
+                                <div class="tab_text">
+                                    <ul class="userlistUl">
+
+                                        <li class="user2"><span class="t">管理员/admin(admin)</span><i class="del" onclick="delUser(2);"></i></li>
+
+                                        <li class="user10453"><span class="t">ljj/ljj(ljj)</span><i class="del" onclick="delUser(10453);"></i></li>
+
+                                        <li><a href="/wm_dc/admin/post/addUserToPost.do?postId=16&menuId=4" class="save_btn xin_box">添加用户</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function() {
+        pageResize();
+
+        $('.set_btn').colorbox(colorbox_option_w90);
+    })
+
+    function delPost(text) {
+        layer.confirm(text, {
+            btn: ['确定', '取消'] //按钮
+        }, function() {
+            layer.closeAll();
+            window.location.href = "/wm_dc/admin/post/del/16.do?menuId=4"
+        }, function() {
+
+        });
+
+    }
+
+    $(".userbox_1 .tab_title a").click(function() {
+        var index = $(".userbox_1 .tab_title a").index(this);
+        $('.userbox_1 .tab_title a').eq(index).addClass('cur').siblings().removeClass('cur');
+        $('.userbox_1 .tab_text').eq(index).show().siblings().hide();
+        return false;
+    }).focus(function() {
+        this.blur();
+    });
+
+    $('#userEdit').click(function() {
+        $('.userbox_1').toggleClass('userbox_1_del');
+        return false;
+    })
+
+    function delUser(userId) {
+        $.ajax({
+            type: "post",
+            url: "/wm_dc/admin/post/delByUserIdAndPostId.ajax",
+            dataType: "json",
+            data: {
+                postId: 16,
+                userId: userId,
+                m: Math.random()
+            },
+            success: function(data) {
+                if (data) {
+                    $('.user' + userId).remove();
+                }
+            }
+        });
+    }
+</script>

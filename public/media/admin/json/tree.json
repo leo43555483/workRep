@@ -1,0 +1,45 @@
+[
+	{
+		"id":1,
+		"text":"大学管理",
+		"type":"department",
+		"state" : { "checkbox_disabled" : true },
+		"children":[
+			{"id":11,"text":"校务委员会","type":"department","state" : { "checkbox_disabled" : true,"selected":true }},
+			{"id":12,"text":"基金行政管理委员会","type":"department","children":[
+				{"id":121,"text":"陈某","type":"person"},
+				{"id":122,"text":"研究单位","type":"department","children":[
+					{"id":1221,"text":"李某","type":"person"},
+					{"id":1222,"text":"王五","type":"person"}
+				]}
+			]}
+		]
+	},{
+		"id":2,
+		"text":"大学管理",
+		"children":[
+			{"id":21,"text":"校务委员会"},
+			{"id":22,"text":"基金行政管理委员会","children":[
+				{"id":221,"text":"教学术委员会"},
+				{"id":222,"text":"研究单位","children":[
+					{"id":2221,"text":"教学术委员会"},
+					{"id":2222,"text":"研究单位"}
+				]}
+			]}
+		]
+	},{
+		"id":3,
+		"text":"大学管理",
+		"children":[
+			{"id":31,"text":"校务委员会"},
+			{"id":32,"text":"基金行政管理委员会"}
+		]
+	},{
+		"id":4,
+		"text":"科大医院",
+		"children":[
+			{"id":41,"text":"校务委员会"},
+			{"id":42,"text":"基金行政管理委员会"}
+		]
+	}
+]

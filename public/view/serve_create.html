@@ -1,0 +1,212 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>數據中心</title>
+    <meta name="keywords" content="數據中心" />
+    <meta name="description" content="數據中心" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <script type="text/javascript" src="./media/admin/inc/icheck.min.js?20180928"></script>
+
+    <script>
+        var _preservation = "保存中";
+        var _confirmation = "確認";
+        var _thereIsAnUnknownErrorPleaseTryAgainLater = "資料異常，請刷新頁面後重試";
+    </script>
+
+</head>
+
+
+<body>
+    <div class="_wrapper">
+        <div class="popup_out">
+            <form service="form" method="post" id="myform" action="/wm_dc/admin/service/save.do" enctype="multipart/form-data">
+                <input type="hidden" name="token" value="035ec7b3-8490-4a75-8717-f53193d4100f" />
+                <input type="hidden" name="menuId" value="2" />
+                <div class="poptit"><span class="t">添加服務</span></div>
+                <div class="popcontent">
+                    <ul class="formlist">
+                        <li class="item">
+                            <div class="item_in">
+                                <span class="label"><span class="must">*</span>服務編碼</span>
+                                <input type="text" name="code" class="input_text  required" placeholder="" maxlength="50"
+                                    value="S-">
+                            </div>
+                        </li>
+                        <li class="item">
+                            <div class="item_in">
+                                <span class="label"><span class="must">*</span>服務名稱</span>
+                                <input type="text" name="name" class="input_text  required" placeholder="" maxlength="50"
+                                    value="">
+                            </div>
+                        </li>
+                    </ul>
+                    <div id="serviceAdd">
+                        <ul class="formlist formlist_np" id="serviceDel1">
+                            <li class="item half">
+                                <div class="item_in">
+                                    <span class="label">服務地址</span>
+                                    <input type="text" name="ip" tips="theIPAddressOfTheServiceSystem" class="input_text"
+                                        placeholder="" maxlength="50" value="">
+                                </div>
+                            </li>
+                            <li class="item half">
+                                <div class="item_in">
+                                    <span class="label">服務URL</span>
+                                    <div class="input-group">
+                                        <input type="text" name="url" tips="theWebSiteOfTheServiceSystem" class="form-control input_text"
+                                            placeholder="" maxlength="50" value="">
+                                        <a onclick="addService(this,1);" class="input-group-addon btn_add">+</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <ul class="formlist formlist_np">
+                        <li class="item">
+                            <div class="item_in">
+                                <span class="label">服務端口</span>
+                                <input type="text" name="port" class="input_text " placeholder="" maxlength="50" value="">
+                            </div>
+                        </li>
+                        <li class="item">
+                            <div class="item_in">
+                                <span class="label">二級目錄</span>
+                                <input type="text" name="frontendBaseUrl" class="input_text " placeholder="" maxlength="50"
+                                    value="">
+                                <span class="help-block" data-title="二級目錄，就是子目錄，繼承在主站目錄下的，相當於網站的跟目錄在建立一個資料夾存放網站。無則留空如，http://www.baidu.com/blog/"></span>
+                            </div>
+                        </li>
+                        <li class="item">
+                            <div class="item_in">
+                                <span class="label">服務所屬平臺</span>
+                                <div class="customSelect_out">
+                                    <select name="applicationId">
+
+                                        <option value="18">办公平台</option>
+
+                                        <option value="16">spu</option>
+
+                                        <option value="17">member</option>
+
+                                        <option value="14">数据中心</option>
+
+                                        <option value="15">mian-server</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="item">
+                            <div class="item_in">
+                                <span class="label">是否發佈</span>
+                                <label><input type="radio" name="isReleased" value="1" checked="checked" class="input_radio" />發佈</label>
+                                <label><input type="radio" name="isReleased" value="0" class="input_radio" />不發佈</label>
+                            </div>
+                        </li>
+                        <li class="item">
+                            <div class="item_in">
+                                <span class="label">description</span>
+                                <textarea name="intro" class="textarea " maxlength="50"></textarea>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="subbox">
+                        <input type="submit" value="確認" class="submit" />
+                        <input type="button" value="取消" class="cancel xboxClose_btn" />
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <script type="text/javascript">
+
+            function addService(obj, index) {
+                // 	$(obj).remove();
+                service_html = "<ul class=\"formlist formlist_np\" id=\"serviceDel" + (index + 1) + "\">" +
+                    "<li class=\"item half\"><div class=\"item_in\">" +
+                    "<span class=\"label\">服務地址</span>" +
+                    "<input type=\"text\" name=\"ip\" class=\"input_text\" placeholder=\"\" maxlength=\"50\" value=\"\">" +
+                    "</div></li>" +
+                    "<li class=\"item half\"><div class=\"item_in\">" +
+                    "<span class=\"label\">服務URL</span>" +
+                    "<div class=\"input-group\"><input type=\"text\" name=\"url\" class=\"form-control input_text\" placeholder=\"\" maxlength=\"50\" value=\"\"> <!-- <a onclick=\"addService(this," + (index + 1) + ");\" class=\"input-group-addon btn_add\">+</a> --> <a onclick=\"delService(" + (index + 1) + ");\" class=\"input-group-addon btn_del\">-</a></div>" +
+                    "</div></li></ul>";
+                $("#serviceAdd").append(service_html);
+            }
+
+            function delService(index) {
+                if (index == 1) {
+                    return;
+                }
+                $("#serviceDel" + index).remove();
+            }
+
+        </script>
+        <script type="text/javascript">
+            $(function () {
+                $(".customSelect_out select").SumoSelect();
+                $(".input_check, .input_radio").iCheck({
+                    checkboxClass: "icheckbox_square-blue",
+                    radioClass: "iradio_square-blue"
+                });
+
+
+                $('#myform').find(':submit').removeAttr('disabled');
+                $('#myform').find(':submit').val('確認');
+
+                $("#myform").validate({
+                    rules: {
+                        code: {
+                            remote: {
+                                type: "POST",
+                                url: "/wm_dc/admin/service/isExist.ajax",
+                                data: {
+                                    notId: 0,
+                                    code: function () {
+                                        return $('input[name=code]').val();
+                                    },
+                                    m: Math.random()
+                                }
+                            }
+                        }
+                    },
+                    messages: {
+                        code: {
+                            remote: "不能出現重複編碼"
+                        }
+                    },
+                    submitHandler: function (form) {
+                        /* $('#myform').find(':submit').attr('disabled', 'disabled');
+                        $('#myform').find(':submit').val('保存中...');
+        
+                        form.submit(); */
+                        submitForm(form, function (data) {
+                            $('#servicetree').jstree(true).refresh();
+                            loadView(data.id);
+                        })
+                    }
+                });
+            });					
+        </script>
+
+
+    </div>
+    <script type="text/javascript">
+        $('.help-tips').each(function () {
+            $(this).mouseover(function () {
+                layer.tips($(this).attr('data-title'), $(this), {
+                    time: 0,
+                    skin: 'layui-layer-tips_1'
+                });
+                console.log(1)
+            }).mouseout(function () {
+                layer.closeAll('tips');
+            })
+        })
+    </script>
+</body>
+
+</html>

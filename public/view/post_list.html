@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>岗位管理</title>
+    <!-- <link rel="Shortcut Icon" href="${ctx }/favicon.ico" type="image/x-icon" /> -->
+    <link rel="stylesheet" href="../media/admin/inc/global.css" type="text/css" />
+    <link rel="stylesheet" href="../media/admin/inc/style.css" type="text/css" />
+    <link rel="stylesheet" href="../media/admin/font/iconfont.css" type="text/css" />
+    <script type="text/javascript" src="../media/admin/inc/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="../media/admin/inc/bootstrap/css/bootstrap.css" type="text/css" />
+    <script type="text/javascript" src="../media/admin/inc/bootstrap/js/bootstrap.js"></script>
+
+    <!-- <link rel="stylesheet" href="../media/admin/inc/jquery.xinbox.css" type="text/css" />
+    <script type="text/javascript" src="../media/admin/inc/jquery.xinbox.js"></script> -->
+    <!-- 
+    <script>
+        var _preservation = "<fmt:message key='preservation'/>";
+        var _confirmation = "<fmt:message key='confirmation'/>";
+        var _thereIsAnUnknownErrorPleaseTryAgainLater = "<fmt:message key='_thereIsAnUnknownErrorPleaseTryAgainLater'/>";
+    </script> -->
+
+    <link rel="stylesheet" href="../media/admin/inc/themes/default/style.min.css" />
+    <script src="../media/admin/inc/jstree.min.js"></script>
+
+    <link rel="stylesheet" href="../media/admin/inc/datatables.css" type="text/css" />
+    <script type="text/javascript" src="../media/admin/inc/datatables.min.js"></script>
+
+
+    <script type="text/javascript" src="../media/common/jquery.form.js"></script>
+    <script type="text/javascript" src="../media/common/jquery.validate.js"></script>
+    <script type="text/javascript" src="../media/common/jquery.validate.extend.js"></script>
+
+    <!-- <script type="text/javascript" src="../media/media/common/My97DatePicker4.5/WdatePicker.js"></script> -->
+
+    <link rel="stylesheet" href="../media/admin/inc/colorbox.css" type="text/css" />
+    <script type="text/javascript" src="../media/admin/inc/jquery.colorbox.js"></script>
+
+    <link rel="stylesheet" href="../media/admin/inc/jquery.sumoselect.css" type="text/css" />
+    <script type="text/javascript" src="../media/admin/inc/jquery.sumoselect.js"></script>
+
+
+    <script type="text/javascript" src="../media/admin/inc/layer/layer.js"></script>
+    <script type="text/javascript" src="../media/admin/inc/func.js"></script>
+
+    <script type="text/javascript" src="../media/admin/inc/icheck.min.js"></script>
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <a href="#" class="logobox">
+                <span class="logo"><img src="../media/admin/images/logo2.png" class="img" /><span class="t">数据中心</span></span>
+            </a>
+            <div class="header_right">
+                <ul class="nav">
+                    <li class="cur">
+                        <a href="#">统一认证</a>
+                    </li>
+                    <li class="">
+                        <a href="#">统一授权</a>
+                    </li>
+                    <li class="">
+                        <a href="#">统一数据</a>
+                    </li>
+                    <li class="disable">
+                        <a href="#">统一报表</a>
+                    </li>
+                    <li class="disable">
+                        <a href="#">统一日志</a>
+                    </li>
+                </ul>
+                <div class="msg_right">
+                    <!-- <a href="#" class="msg_btn">
+    						<span class="num">7</span>
+    					</a>
+    					<a href="#" class="help_btn"></a> -->
+                    <a href="./logout.html" class="user"><img src="">超级root&nbsp;&nbsp; 退出
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="_container">
+            <div class="menu">
+                <a href="#" class="menu_btn"></a>
+            </div>
+            <div class="content">
+                <nav class="content_left">
+                    <ul class="nav_left">
+                        <li class="">
+                            <a href="./application_list.html" class="t_1">
+                                <span class="t">
+                                    <i class="icon iconfont icon-shujuzhongxin-yingyongguanli"></i>
+                                    应用类别
+                                </span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="./service_list.html" class="t_1">
+                                <span class="t">
+                                    <i class="icon iconfont icon-shujuzhongxin-yingyongguanli"></i>
+                                    应用管理
+                                </span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="./role_list.html" class="t_1">
+                                <span class="t">
+                                    <i class="icon iconfont icon-shujuzhongxin-jiaoseguanli"></i>
+                                    角色管理
+                                </span>
+                            </a>
+                        </li>
+                        <li class="cur">
+                            <a href="./post_list.html" class="t_1">
+                                <span class="t">
+                                    <i class="icon iconfont icon-shujuzhongxin-gangweiguanli"></i>
+                                    岗位管理
+                                </span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="./auth_distribution.html" class="t_1">
+                                <span class="t">
+                                    <i class="icon iconfont icon-shujuzhongxin-quanxianfenpei"></i>
+                                    权限管理
+                                </span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="./oauth2_client.html" class="t_1">
+                                <span class="t">
+                                    <i class="icon iconfont icon-shujuzhongxin-kehuduanguanli"></i>
+                                    客户端管理
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <section class="container-fluid container_page">
+                    <div class="row row-full">
+                        <div class="row-full-in">
+                            <nav class="col-lg-3 container_side">
+                                <div class="panel panel-box">
+                                    <div class="panel-heading tit_big">
+                                        <span class="t">岗位管理</span>
+                                        <span class="ctrl">
+                                            <a href="#" class="openAll">
+                                                展开全部
+                                            </a>
+                                        </span>
+                                        <span class="filter">
+                                            <span class="item">
+                                                <a href="./post_add_user.html" class="new xin_box submit">
+                                                    添加崗位</a>
+                                                <a href="${ctx }/admin/authAllocation/create.do?menuId=${curMenu.id}" class="new submit">
+                                                    崗位分配</a>
+                                            </span>
+                                        </span>
+                                    </div>
+
+                                    <div class="panel-heading searchbox_1_out">
+                                        <form id="form">
+                                            <div class="searchbox_1 popup_s">
+                                                <input type="submit" value="" class="btn">
+                                                <input type="text" name="" value="" placeholder="搜索" class="input">
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <div class="panel-body panel-body-p0 scrollbar">
+                                        <div id="posttree" class="treelist"></div>
+                                        <ul class="navbar_ul" style="display:none;">
+                                        </ul>
+                                    </div>
+                                </div>
+                            </nav>
+                            <article class="col-lg-9 container_main contentin">
+                                <div class="panel panel-box"></div>
+                                <div class="panel-body scrollbar"></div>
+                            </article>
+                        </div>
+
+                    </div>
+                </section>
+                <div class="popup">
+                    <div class="success" id="success">
+                        <img src="${media}/admin/images/success_ico.png" />
+                        <div>
+                            <fmt:message key="distributionSuccess" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            var contHeight, pageResizeHead, pageResize, popResize;
+            $(function() {
+                pageResizeHead = function() {
+                    contHeight = $(window).height() - $(".header").height() - 10;
+                }
+                pageResizeHead();
+            })
+
+
+            function layerConfirm(text, url) {
+                layer.confirm(text, {
+                    btn: ['确定', '取消'] //按钮
+                }, function() {
+                    layer.closeAll();
+                    window.location.href = url;
+                }, function() {
+
+                });
+            }
+        </script>
+
+        <script>
+            function updateClientSecret(id) {
+                layer.confirm('确认要重制客户端密码吗', {
+                    btn: ['确定', '取消']
+                }, function() {
+                    $.ajax({
+                        type: "post",
+                        url: "${ctx}/admin/oauth2Client/updateClientSecret.ajax",
+                        data: {
+                            id: id,
+                            m: Math.random()
+                        },
+                        success: function(data) {
+                            if (data) {
+                                var tables = $('.dataTable').DataTable();
+                                tables.draw(false);
+                                layer.closeAll();
+                            }
+                        }
+                    });
+                }, function() {
+
+                });
+
+            }
+            $(function() {
+                pageResize = function() {
+                    $('.container_main .scrollbar').css('height', contHeight - $('.container_main .tit_big').outerHeight() - 2);
+                    $('.container_side .scrollbar').css('height', contHeight - $('.container_main .tit_big').outerHeight() - 2);
+                }
+                pageResize();
+
+            });
+        </script>
+
+        <script>
+            $(function() {
+                $('#posttree').jstree({
+                    'core': {
+                        // 'data': {
+                        //     "url": "${ctx}/admin/post/getList.ajax?m=" + Math.random(),
+                        //     "method": "POST",
+                        //     "dataType": "json" 
+                        // }
+                        'data': [{
+                            "data": {
+                                "keyword": "1"
+                            },
+                            "children": [{
+                                "data": {
+                                    "keyword": "2"
+                                },
+                                "children": [{
+                                    "data": {
+                                        "keyword": "3"
+                                    },
+                                    "id": 18,
+                                    "text": "3",
+                                    "type": "person"
+                                }],
+                                "id": 17,
+                                "text": "2",
+                                "type": "person"
+                            }],
+                            "id": 16,
+                            "text": "1",
+                            "type": "department"
+                        }, {
+                            "data": {
+                                "keyword": "岗位2"
+                            },
+                            "children": [{
+                                "data": {
+                                    "keyword": "岗位3"
+                                },
+                                "children": [{
+                                    "data": {
+                                        "keyword": "岗位4"
+                                    },
+                                    "id": 4,
+                                    "text": "岗位4",
+                                    "type": "person"
+                                }],
+                                "id": 3,
+                                "text": "岗位3",
+                                "type": "person"
+                            }, {
+                                "data": {
+                                    "keyword": "新岗位"
+                                },
+                                "id": 15,
+                                "text": "新岗位",
+                                "type": "person"
+                            }],
+                            "id": 2,
+                            "text": "岗位2",
+                            "type": "department"
+                        }, {
+                            "data": {
+                                "keyword": "bbb"
+                            },
+                            "id": 14,
+                            "text": "bbb",
+                            "type": "department"
+                        }, {
+                            "data": {
+                                "keyword": "岗位00"
+                            },
+                            "id": 7,
+                            "text": "岗位00",
+                            "type": "department"
+                        }, {
+                            "data": {
+                                "keyword": "dsa"
+                            },
+                            "id": 5,
+                            "text": "dsa",
+                            "type": "department"
+                        }, {
+                            "data": {
+                                "keyword": "test"
+                            },
+                            "children": [{
+                                "data": {
+                                    "keyword": "test2"
+                                },
+                                "children": [{
+                                    "data": {
+                                        "keyword": "test3"
+                                    },
+                                    "id": 13,
+                                    "text": "test3",
+                                    "type": "person"
+                                }],
+                                "id": 12,
+                                "text": "test2",
+                                "type": "person"
+                            }],
+                            "id": 11,
+                            "text": "test",
+                            "type": "department"
+                        }, {
+                            "data": {
+                                "keyword": "军师"
+                            },
+                            "id": 6,
+                            "text": "军师",
+                            "type": "department"
+                        }, {
+                            "data": {
+                                "keyword": "岗位5"
+                            },
+                            "id": 10,
+                            "text": "岗位5",
+                            "type": "department"
+                        }, {
+                            "data": {
+                                "keyword": "Administrator"
+                            },
+                            "children": [{
+                                "data": {
+                                    "keyword": "岗位1"
+                                },
+                                "id": 1,
+                                "text": "岗位1",
+                                "type": "person"
+                            }],
+                            "id": 9,
+                            "text": "Administrator",
+                            "type": "department"
+                        }]
+                    },
+                    "types": {
+                        "default": {
+                            'icon': false
+                        }
+                    },
+                    "search": {
+                        "show_only_matches": true,
+                        "show_only_matches_children": true
+                    },
+                    "plugins": [
+                        "types", "wholerow", "search"
+                    ]
+                });
+
+                $("#posttree").on("loaded.jstree", function(event, data) {
+                    // 展开所有节点
+                    $('#posttree').jstree('open_all');
+                    $('#posttree').jstree('close_all');
+                    // 展开指定节点
+                    //data.instance.open_node(1);     // 单个节点 （1 是顶层的id）
+                    //data.instance.open_node([1,2,3,4]); // 多个节点 (展开多个几点只有在一次性装载后所有节点后才可行
+                });
+
+                $('#posttree').on("changed.jstree", function(e, data) {
+                    if (data.action == "select_node") {
+                        loadView(data.node.id);
+                    }
+
+                    //console.log(data.selected);
+                    //alert('node.id is:' + data.node.id);
+                    //console.log(data);
+                });
+
+
+                $("#form").submit(function(e) {
+                    e.preventDefault();
+                    $("#posttree").jstree(true).search($(".popup_s .input").val());
+                });
+
+                $(document).on('click', '.container_side .openAll', function() {
+                    $(this).text('关闭全部').addClass('closeAll');
+                    $('#posttree').jstree('open_all');
+                });
+                $(document).on('click', '.container_side .closeAll', function() {
+                    $(this).text('展开全部').removeClass('closeAll');
+                    $('#posttree').jstree('close_all');
+                });
+
+                function loadView(id) {
+                    $.ajax({
+                        type: 'get',
+                        url: "./menu.html/html",
+                        // data: { "m": Math.random() },
+                        dataType: 'html',
+                        beforeSend: function(xhr, settings) {
+                            $('.contentin').html('<div class="contbox loadingbox"><img src="../media/admin/images/loading.gif" /></div>');
+                        },
+                        complete: function(xhr, status) {},
+                        success: function(data, status, xhr) {
+                            $('.contentin').html(data);
+                            $(".xin_box").colorbox(colorbox_option);
+                        },
+                        error: function(data, status, xhr) {
+                            commonAjaxError(XMLHttpRequest, textStatus, errorThrown);
+                        }
+                    });
+                }
+            })
+        </script>
+
+        <script type="text/javascript">
+            $(function() {
+                $(window).resize(function() {
+                    pageResizeHead();
+                    try {
+                        if (typeof pageResize === "function") {
+                            pageResize();
+                        }
+                        if (typeof popResize === "function") {
+                            popResize();
+                        }
+                    } catch (e) {}
+                });
+            })
+            $('.help-tips').each(function() {
+                $(this).mouseover(function() {
+                    layer.tips($(this).attr('data-title'), $(this), {
+                        time: 0,
+                        skin: 'layui-layer-tips_1'
+                    });
+                    console.log(1)
+                }).mouseout(function() {
+                    layer.closeAll('tips');
+                })
+            })
+
+            $(".userinfo .item select").SumoSelect();
+
+            $(document).on('click', '.select_tree .title', function() {
+                $('.select_tree').find('.treebox').hide();
+                $(this).parent('.select_tree').find('.treebox').show();
+            });
+            /*$(document).on('click','.treebox .jstree-node',function(e){
+                if(!$(e.target).is(".jstree-icon")){
+                    $('.treebox').hide();
+                }
+            });*/
+            $(document).click(function(e) {
+                if (!$(e.target).is(".select_tree") & !$(e.target).parents().is(".select_tree")) {
+                    $('.treebox').hide();
+                }
+            });
+            $(function() {
+
+                var wlhash = window.location.hash;
+                wlhash = wlhash.substr(1, wlhash.length);
+
+                /*$(".xin_box").xinBox({
+                    maxWidth:1920,
+                    minWidth:$(window).width()*0.9,
+                    innerWidth:$(window).width()*0.9,
+                    defaultHref: (($.trim(wlhash) && $.trim(wlhash)) != '#') ? ( decodeURI(wlhash) ) : false
+                });*/
+
+                $(".xin_box").colorbox(colorbox_option);
+                $('.xboxClose_btn').click(function() {
+                    $.colorbox.close();
+                });
+
+                /*var height = $(window).height()-$(".header").height()-$(".menu").height() -1;
+                $(".nav_left,.sideTree,.content_right").css({"min-height":height-1-$(".navbar .tit").outerHeight()-$(".navbar .tit_big").outerHeight()})
+                $(".sideTree").css({"height":height-1-$(".navbar .tit").outerHeight()-$(".navbar .tit_big").outerHeight()})
+                $(".contbox").css({"height":height-$(".contentin .tit_big").outerHeight()})*/
+
+                $(".navbar li > a").click(function() {
+                    $(this).parent().toggleClass("on");
+                })
+            })
+        </script>
+        <script>
+            $(function() {
+                $(".input_check").iCheck({
+                    checkboxClass: "icheckbox_square-blue",
+                    radioClass: 'icheckbox_square-blue'
+                });
+                //全选
+                $('.service').on('ifChanged', function(event) {
+                    var obj = $(this);
+                    changeService(obj);
+                });
+                $('.module').on('ifChanged', function(event) {
+                    var obj = $(this);
+                    changeModule(obj);
+                });
+                $('.checkAllOper').on('ifChanged', function(event) {
+                    console.log('select')
+                    if ($(this).prop("checked")) { // 全选
+                        $('.service').iCheck("check");
+                    } else { // <fmt:message key="cancel" />全选
+                        $('.service').iCheck("uncheck");
+                    }
+                });
+                $('.roleAuthHtml .item_tit').prepend('<span class="ico"></span>');
+                $('.roleAuthHtml .item_tit .ico').click(function() {
+                    $(this).parent().toggleClass('item_tit_on');
+                    $(this).parent().next('.rolein').slideToggle();
+                });
+            })
+        </script>
+</body>
+
+</html>

@@ -1,0 +1,88 @@
+<div class="panel panel-box">
+    <div class="panel-heading tit_big">
+        <span class="t">角色詳細</span>
+        <div class="filter">
+            <span class="item">
+
+                <a href="/wm_dc/admin/role/edit/27.do?menuId=3" class="xin_box submit">編輯</a>
+
+                <a class="reset" onclick="deleteAjax('您確定要把“asd”刪除嗎？','/wm_dc/admin/role/del/27.do?menuId=3',function(){$('#roletree').jstree(true).refresh(); $('.contentin').html('')});">刪除</a>
+
+                <a href="/wm_dc/admin/role/auth/27.do?menuId=3" class="set_btn reset">權限設置</a>
+
+            </span>
+
+        </div>
+    </div>
+    <div class="panel-body scrollbar">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">asd</div>
+                    <div class="panel-body">
+                        <ul class="formlist formlist_np">
+                            <li class="item">
+                                <div class="item_in">
+                                    <span class="label">角色編碼：</span>
+                                    A
+                                </div>
+                            </li>
+                            <li class="item">
+                                <div class="item_in">
+                                    <span class="label">角色名稱：</span>
+                                    asd
+                                </div>
+                            </li>
+                            <li class="item">
+                                <div class="item_in">
+                                    <span class="label">上級角色：</span>
+                                    無
+                                </div>
+                            </li>
+                            <li class="item">
+                                <div class="item_in">
+                                    <span class="label">下级角色：</span>
+                                    無
+                                </div>
+                            </li>
+                            <li class="item">
+                                <div class="item_in">
+                                    <span class="label">角色描述：</span>
+                                    asdasdasd
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">岗位列表</div>
+                    <div class="panel-body">
+                        <div class="userbox_1">
+                            <div class="tab_show">
+                                <div class="tab_text">
+                                    <ul class="userlistUl">
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        pageResize();
+
+
+        $('.set_btn').colorbox(colorbox_option_w90);
+    })
+</script>

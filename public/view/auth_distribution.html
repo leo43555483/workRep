@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>客户端管理</title>
+    <!-- <link rel="Shortcut Icon" href="${ctx }/favicon.ico" type="image/x-icon" /> -->
+    <link rel="stylesheet" href="../media/admin/inc/global.css" type="text/css" />
+    <link rel="stylesheet" href="../media/admin/inc/style.css" type="text/css" />
+    <link rel="stylesheet" href="../media/admin/font/iconfont.css" type="text/css" />
+    <script type="text/javascript" src="../media/admin/inc/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="../media/admin/inc/bootstrap/css/bootstrap.css" type="text/css" />
+    <script type="text/javascript" src="../media/admin/inc/bootstrap/js/bootstrap.js"></script>
+
+    <!-- <link rel="stylesheet" href="../media/admin/inc/jquery.xinbox.css" type="text/css" />
+    <script type="text/javascript" src="../media/admin/inc/jquery.xinbox.js"></script> -->
+    <!-- 
+    <script>
+        var _preservation = "<fmt:message key='preservation'/>";
+        var _confirmation = "<fmt:message key='confirmation'/>";
+        var _thereIsAnUnknownErrorPleaseTryAgainLater = "<fmt:message key='_thereIsAnUnknownErrorPleaseTryAgainLater'/>";
+    </script> -->
+
+    <link rel="stylesheet" href="../media/admin/inc/themes/default/style.min.css" />
+    <script src="../media/admin/inc/jstree.min.js"></script>
+
+    <link rel="stylesheet" href="../media/admin/inc/datatables.css" type="text/css" />
+    <script type="text/javascript" src="../media/admin/inc/datatables.min.js"></script>
+
+
+    <script type="text/javascript" src="../media/common/jquery.form.js"></script>
+    <script type="text/javascript" src="../media/common/jquery.validate.js"></script>
+    <script type="text/javascript" src="../media/common/jquery.validate.extend.js"></script>
+
+    <!-- <script type="text/javascript" src="../media/media/common/My97DatePicker4.5/WdatePicker.js"></script> -->
+
+    <link rel="stylesheet" href="../media/admin/inc/colorbox.css" type="text/css" />
+    <script type="text/javascript" src="../media/admin/inc/jquery.colorbox.js"></script>
+
+    <link rel="stylesheet" href="../media/admin/inc/jquery.sumoselect.css" type="text/css" />
+    <script type="text/javascript" src="../media/admin/inc/jquery.sumoselect.js"></script>
+
+
+    <script type="text/javascript" src="../media/admin/inc/layer/layer.js"></script>
+    <script type="text/javascript" src="../media/admin/inc/func.js"></script>
+
+    <script type="text/javascript" src="../media/admin/inc/icheck.min.js"></script>
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <a href="#" class="logobox">
+                <span class="logo"><img src="../media/admin/images/logo2.png" class="img" /><span class="t">数据中心</span></span>
+            </a>
+            <div class="header_right">
+                <ul class="nav">
+                    <li class="cur">
+                        <a href="#">统一认证</a>
+                    </li>
+                    <li class="">
+                        <a href="#">统一授权</a>
+                    </li>
+                    <li class="">
+                        <a href="#">统一数据</a>
+                    </li>
+                    <li class="disable">
+                        <a href="#">统一报表</a>
+                    </li>
+                    <li class="disable">
+                        <a href="#">统一日志</a>
+                    </li>
+                </ul>
+                <div class="msg_right">
+                    <!-- <a href="#" class="msg_btn">
+    						<span class="num">7</span>
+    					</a>
+    					<a href="#" class="help_btn"></a> -->
+                    <a href="./logout.html" class="user"><img src="">超级root&nbsp;&nbsp;
+                        退出</a>
+                </div>
+            </div>
+        </div>
+        <div class="_container">
+            <div class="menu">
+                <a href="#" class="menu_btn"></a>
+            </div>
+            <div class="content">
+                <nav class="content_left">
+                    <ul class="nav_left">
+                        <li class="">
+                            <a href="./application_list.html" class="t_1">
+                                <span class="t">
+                                    <i class="icon iconfont icon-shujuzhongxin-yingyongguanli"></i>
+                                    应用类别
+                                </span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="./service_list.html" class="t_1">
+                                <span class="t">
+                                    <i class="icon iconfont icon-shujuzhongxin-yingyongguanli"></i>
+                                    应用管理
+                                </span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="./role_list.html" class="t_1">
+                                <span class="t">
+                                    <i class="icon iconfont icon-shujuzhongxin-jiaoseguanli"></i>
+                                    角色管理
+                                </span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="./post_list.html" class="t_1">
+                                <span class="t">
+                                    <i class="icon iconfont icon-shujuzhongxin-gangweiguanli"></i>
+                                    岗位管理
+                                </span>
+                            </a>
+                        </li>
+                        <li class="cur">
+                            <a href="./auth_distribution.html" class="t_1">
+                                <span class="t">
+                                    <i class="icon iconfont icon-shujuzhongxin-quanxianfenpei"></i>
+                                    权限管理
+                                </span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="./oauth2_client.html" class="t_1">
+                                <span class="t">
+                                    <i class="icon iconfont icon-shujuzhongxin-kehuduanguanli"></i>
+                                    客户端管理
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <section class="container-fluid container_page">
+                    <div class="row row-full">
+                        <div class="row-full-in">
+                            <nav class="col-lg-3 container_side">
+                                <div class="panel panel-box">
+                                    <div class="panel-heading tit_big">
+                                        <span class="t">權限分配</span>
+                                        <!-- <span class="ctrl">
+                							<a href="#" class="openAll"><fmt:message key="expandAll" /></a>
+                						</span> -->
+                                    </div>
+
+                                    <div class="panel-heading searchbox_1_out">
+                                        <form id="form">
+                                            <div class="searchbox_1 popup_s">
+                                                <input type="submit" value="" class="btn">
+                                                <input type="text" name="" value="" placeholder="搜索" class="input">
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <div class="panel-body panel-body-p0 scrollbar">
+                                        <div class="applicationList treelist"></div>
+                                    </div>
+                                </div>
+                            </nav>
+                            <article class="col-lg-9 container_main _contentin">
+                                <div class="panel panel-box">
+                                    <div class="panel-heading tit_big">
+                                        <span class="t">
+                                            权限设置
+                                        </span>
+                                    </div>
+                                    <div class="panel-body scrollbar">
+                                        <!-- <div class="tit_table"><fmt:message key="postName"/>：${requestScope.role.name }</div> -->
+                                        <form role="form" method="post" id="myform" action="<c:url value='${backend}/authAllocation/nextStep.do' />"
+                                            enctype="multipart/form-data">
+                                            <div class="rolebox">
+                                                <div class="tit_r">
+                                                    <!-- <div class="item"><input type="checkbox" name="checkedAll" class="input_check"  /> 应用名称</div> -->
+                                                    <div class="item"><input type="checkbox" class="input_check checkAllOper" />
+                                                        模塊名稱
+                                                    </div>
+                                                    <div class="item">
+                                                        操作
+                                                    </div>
+                                                    <div class="item">
+                                                        數據範圍
+                                                    </div>
+                                                </div>
+                                                <input type="hidden" name="menuId" value="${curMenu.id}" />
+                                                <input type="hidden" name="applicationId" value="${requestScope.applicationId }" />
+                                                <div class="role roleAuthHtml">
+                                                    <div class="role roleAuthHtml">
+                                                        <div class="item">
+                                                            <div class="item_tit">
+                                                                <input type="checkbox" class="input_check service">
+                                                                基础平台
+                                             
+                                                            </div>
+                                                            <nav class="rolein">
+                                                                <ul>
+                                                                    <li>
+                                                                        <div><input type="checkbox" class="input_check module">应用管理</div>
+                                                                    </li>
+                                                                    <li>
+                                                                        <div>
+                                                                            <label for="">
+                                                                                <input type="checkbox" class="input_check module">查看
+                                                                            </label>
+                                                                            <label for="">
+                                                                                <input type="checkbox" class="input_check module">创建
+                                                                            </label>
+                                                                            <label for="">
+                                                                                <input type="checkbox" class="input_check module">帮助中心
+                                                                            </label>
+                                                                        </div>
+                                                                    </li>
+                                                                    
+                                                                    <li>
+                                                                        <div>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </nav>
+                                                            <div class="item_tit">
+                                                                <input type="checkbox" class="input_check service">咨询</div>
+                                                            <nav class="rolein">
+                                                                <ul>
+                                                                    <li>
+                                                                        <div><input type="checkbox" class="input_check module">应用管理</div>
+                                                                    </li>
+                                                                    <li>
+                                                                        <div>
+                                                                            <label for="">
+                                                                                <input type="checkbox" class="input_check module">查看
+                                                                            </label>
+                                                                            <label for="">
+                                                                                <input type="checkbox" class="input_check module">创建
+                                                                            </label>
+                                                                            <label for="">
+                                                                                <input type="checkbox" class="input_check module">帮助中心
+                                                                            </label>
+                                                                        </div>
+                                                                    </li>
+                                                            
+                                                                    <li>
+                                                                        <div>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </nav>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="subbox">
+                                                <input type="submit" value="下一步" class="submit" />
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+
+                    </div>
+                </section>
+                <div class="popup">
+                    <div class="success" id="success">
+                        <img src="${media}/admin/images/success_ico.png" />
+                        <div>
+                            <fmt:message key="distributionSuccess" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            var contHeight, pageResizeHead, pageResize, popResize;
+            $(function () {
+                pageResizeHead = function () {
+                    contHeight = $(window).height() - $(".header").height() - 10;
+                }
+                pageResizeHead();
+            })
+
+
+            function layerConfirm(text, url) {
+                layer.confirm(text, {
+                    btn: ['确定', '取消'] //按钮
+                }, function () {
+                    layer.closeAll();
+                    window.location.href = url;
+                }, function () {
+
+                });
+            }
+        </script>
+
+        <script>
+            function updateClientSecret(id) {
+                layer.confirm('确认要重制客户端密码吗', { btn: ['确定', '取消'] }, function () {
+                    $.ajax({
+                        type: "post",
+                        url: "${ctx}/admin/oauth2Client/updateClientSecret.ajax",
+                        data: {
+                            id: id,
+                            m: Math.random()
+                        },
+                        success: function (data) {
+                            if (data) {
+                                var tables = $('.dataTable').DataTable();
+                                tables.draw(false);
+                                layer.closeAll();
+                            }
+                        }
+                    });
+                }, function () {
+
+                });
+
+            }
+            $(function () {
+                pageResize = function () {
+                    $('.container_main .scrollbar').css('height', contHeight - $('.container_main .tit_big').outerHeight() - 2);
+                    $('.container_side .scrollbar').css('height', contHeight - $('.container_main .tit_big').outerHeight() - 2);
+                }
+                pageResize();
+
+            });
+        </script>
+
+        <script>
+            var appId = 18;
+            if (appId != 0) {
+                $('input[name=applicationId]').val(appId);
+                // getRoleAuthHtml(appId);
+            }
+
+            $('.applicationList').jstree({
+                'core': {
+                    // 'data': {
+                        // "url": "${ctx}/admin/authAllocation/getApplicationList.ajax?m=" + Math.random(),
+                        // "dataType": "json" 
+                    // }
+                    'data': [{ "id": 18, "text": "办公平台" }, { "id": 16, "text": "spu" }, { "id": 17, "text": "member" }, { "id": 14, "text": "数据中心" }, { "id": 15, "text": "mian-server" }]
+                },
+                "types": {
+                    "default": {
+                        //'icon' : false
+                        //"icon" : "treeicon treeicon-flash"
+                    },
+                    "person": {
+                        "icon": "treeicon treeicon-file"
+                    }
+                },
+                "search": {
+                    "show_only_matches": true,
+                    "show_only_matches_children": true
+                },
+                "plugins": [
+                    "types", "wholerow", "search"
+                ]
+            });
+
+            $('.applicationList').on("click.jstree", function (event) {
+                var eventNodeName = event.target.nodeName;
+                if (eventNodeName == 'INS') {
+                    return;
+                } else if (eventNodeName == 'A') {
+                    var $subject = $(event.target).parent();
+                    if ($subject.find('ul').length > 0) {
+                    } else {
+                        //选择的id值
+                        var applicationId = $(event.target).parents('li').attr('id');
+                        $('input[name=applicationId]').val(applicationId);
+                        getRoleAuthHtml(applicationId);
+                    }
+                }
+            });
+
+
+
+            $("#form").submit(function (e) {
+                e.preventDefault();
+                $('.applicationList').jstree(true).search($(".popup_s .input").val());
+            });
+
+            $(document).on('click', '.container_side .openAll', function () {
+                $(this).text('关闭全部').addClass('closeAll');
+                $('.applicationList').jstree('open_all');
+            });
+            $(document).on('click', '.container_side .closeAll', function () {
+                $(this).text('展开全部').removeClass('closeAll');
+                $('.applicationList').jstree('close_all');
+            });
+
+
+
+
+            $('#myform').find(':submit').removeAttr('disabled');
+            $('#myform').find(':submit').val('下一步');
+
+            // $(".input_check").iCheck({
+            //     checkboxClass: "icheckbox_square-blue",
+            //     radioClass: 'icheckbox_square-blue'
+            // });
+
+            $("#myform").validate({
+                submitHandler: function (form) {
+                    $('#myform').find(':submit').attr('disabled', 'disabled');
+                    /* $('#myform').find(':submit').val('<fmt:message key="preservation"/>...'); */
+                    if ($('input[name=module]:checked').val() == null) {
+                        layer.alert('请选择模块！', {
+                            icon: 2,
+                            skin: 'layer-ext-moon'
+                        });
+                        $('#myform').find(':submit').removeAttr('disabled');
+                        return;
+                    }
+                    if ($('input[name=operating]:checked').val() == null) {
+                        layer.alert('请选择操作！', {
+                            icon: 2,
+                            skin: 'layer-ext-moon'
+                        });
+                        $('#myform').find(':submit').removeAttr('disabled');
+                        return;
+                    }
+                    $('#myform').find(':submit').removeAttr('disabled');
+                    form.submit();
+                }
+            });
+
+            function getRoleAuthHtml(applicationId) {
+                // 请求權限設置设置数据
+                // $.ajax({
+                //     type: 'get',
+                //     url: "./getRoleAuthHtml",
+                //     data: {
+                //         "m": Math.random(),
+                //         "applicationId": applicationId,
+                //         "roleId": 0
+                //     },
+                //     dataType: 'json',
+                //     beforeSend: function (xhr, settings) {
+
+                //     },
+                //     complete: function (xhr, status) {
+                //     },
+                //     success: function (data, status, xhr) {
+                //         $('input[name=applicationId]').val(applicationId);
+                //         $('.roleAuthHtml').html(data.roleAuthHtml);
+                //         $(".input_check").iCheck({
+                //             checkboxClass: "icheckbox_square-blue",
+                //             radioClass: 'icheckbox_square-blue'
+                //         });
+                //         //全选
+                //         $('.service').on('ifChanged', function (event) {
+                //             var obj = $(this);
+                //             changeService(obj);
+                //         });
+                //         $('.module').on('ifChanged', function (event) {
+                //             var obj = $(this);
+                //             changeModule(obj);
+                //         });
+                //         $('.checkAllOper').on('ifChanged', function (event) {
+                //             if ($(this).prop("checked")) { // 全选
+                //                 $('.service').iCheck("check");
+                //             } else { // <fmt:message key="cancel" />全选
+                //                 $('.service').iCheck("uncheck");
+                //             }
+                //         });
+
+                //         $('.roleAuthHtml .item_tit').prepend('<span class="ico"></span>');
+                //         $('.roleAuthHtml .item_tit .ico').click(function () {
+                //             $(this).parent().toggleClass('item_tit_on');
+                //             $(this).parent().next('.rolein').slideToggle();
+                //         });
+                //     },
+                //     error: function (data, status, xhr) {
+                //         layer.alert('<fmt:message key="thereIsAnUnknownErrorPleaseTryAgainLater" />', {
+                //             icon: 2,
+                //             skin: 'layer-ext-moon'
+                //         });
+                //     }
+                // });
+
+            }
+            
+            function changeService(obj) {
+                if ($(obj).prop('checked')) {
+                    $(obj).parents('.item_tit').next('.rolein').find('.module').iCheck("check");
+                }
+                else {
+                    $(obj).parents('.item_tit').next('.rolein').find('.module').iCheck("uncheck");
+                }
+            }
+            function changeModule(obj) {
+                if ($(obj).prop('checked')) {
+                    $(obj).parents('ul').find('.operating').iCheck("check");
+                }
+                else {
+                    $(obj).parents('ul').find('.operating').iCheck("uncheck");
+                }
+            }
+        </script>
+
+        <script type="text/javascript">
+            $(function () {
+                $(window).resize(function () {
+                    pageResizeHead();
+                    try {
+                        if (typeof pageResize === "function") {
+                            pageResize();
+                        }
+                        if (typeof popResize === "function") {
+                            popResize();
+                        }
+                    } catch (e) { }
+                });
+            })
+            $('.help-tips').each(function () {
+                $(this).mouseover(function () {
+                    layer.tips($(this).attr('data-title'), $(this), {
+                        time: 0,
+                        skin: 'layui-layer-tips_1'
+                    });
+                    console.log(1)
+                }).mouseout(function () {
+                    layer.closeAll('tips');
+                })
+            })
+
+            $(".userinfo .item select").SumoSelect();
+
+            $(document).on('click', '.select_tree .title', function () {
+                $('.select_tree').find('.treebox').hide();
+                $(this).parent('.select_tree').find('.treebox').show();
+            });
+            /*$(document).on('click','.treebox .jstree-node',function(e){
+                if(!$(e.target).is(".jstree-icon")){
+                    $('.treebox').hide();
+                }
+            });*/
+            $(document).click(function (e) {
+                if (!$(e.target).is(".select_tree") & !$(e.target).parents().is(".select_tree")) {
+                    $('.treebox').hide();
+                }
+            });
+            $(function () {
+
+                var wlhash = window.location.hash;
+                wlhash = wlhash.substr(1, wlhash.length);
+
+                /*$(".xin_box").xinBox({
+                    maxWidth:1920,
+                    minWidth:$(window).width()*0.9,
+                    innerWidth:$(window).width()*0.9,
+                    defaultHref: (($.trim(wlhash) && $.trim(wlhash)) != '#') ? ( decodeURI(wlhash) ) : false
+                });*/
+
+                $(".xin_box").colorbox(colorbox_option);
+                $('.xboxClose_btn').click(function () {
+                    $.colorbox.close();
+                });
+
+                /*var height = $(window).height()-$(".header").height()-$(".menu").height() -1;
+                $(".nav_left,.sideTree,.content_right").css({"min-height":height-1-$(".navbar .tit").outerHeight()-$(".navbar .tit_big").outerHeight()})
+                $(".sideTree").css({"height":height-1-$(".navbar .tit").outerHeight()-$(".navbar .tit_big").outerHeight()})
+                $(".contbox").css({"height":height-$(".contentin .tit_big").outerHeight()})*/
+
+                $(".navbar li > a").click(function () {
+                    $(this).parent().toggleClass("on");
+                })
+            })
+        </script>
+        <script>
+            $(function(){
+                $(".input_check").iCheck({
+                    checkboxClass: "icheckbox_square-blue",
+                    radioClass: 'icheckbox_square-blue'
+                });
+                //全选
+                $('.service').on('ifChanged', function (event) {
+                    var obj = $(this);
+                    changeService(obj);
+                });
+                $('.module').on('ifChanged', function (event) {
+                    var obj = $(this);
+                    changeModule(obj);
+                });
+                $('.checkAllOper').on('ifChanged', function (event) {
+                    console.log('select')
+                    if ($(this).prop("checked")) { // 全选
+                        $('.service').iCheck("check");
+                    } else { // <fmt:message key="cancel" />全选
+                        $('.service').iCheck("uncheck");
+                    }
+                });
+                $('.roleAuthHtml .item_tit').prepend('<span class="ico"></span>');
+                $('.roleAuthHtml .item_tit .ico').click(function () {
+                    $(this).parent().toggleClass('item_tit_on');
+                    $(this).parent().next('.rolein').slideToggle();
+                });
+            })
+        </script>
+</body>
+
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>數據中心</title>
+    <meta name="keywords" content="數據中心" />
+    <meta name="description" content="數據中心" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <script type="text/javascript" src="./media/admin/inc/icheck.min.js?20180928"></script>
+
+    <script>
+        var _preservation = "保存中";
+        var _confirmation = "確認";
+        var _thereIsAnUnknownErrorPleaseTryAgainLater = "資料異常，請刷新頁面後重試";
+    </script>
+
+</head>
+
+<body>
+    <div class="_wrapper">
+        <div class="popup_out">
+            <div class="poptit"><span class="t">權限設置</span></div>
+            <div class="popcontent">
+                <div class="container-fluid">
+                    <div class="row row-full">
+                        <div class="row-full-in">
+                            <nav class="col-lg-3 container_side">
+                                <div class="panel panel-default">
+                                    <!-- <div class="panel-heading tit_big">
+								<span class="t">澳門科技大學</span>
+							</div> -->
+                                    <div class="panel-heading searchbox_1_out">
+                                        <form id="form">
+                                            <div class="searchbox_1 popup_s">
+                                                <input type="submit" value="" class="btn">
+                                                <input type="text" name="" value="" placeholder="搜索" class="input">
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="panel-body panel-body-p0 scrollbar">
+                                        <div class="applicationList treelist"></div>
+                                    </div>
+                                </div>
+                            </nav>
+                            <article class="col-lg-9 container_main">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading tit_big"><span class="t">崗位名稱：1</span></div>
+                                    <div class="panel-body scrollbar">
+                                        <form role="form" method="post" id="myform" action="/wm_dc/admin/post/saveAuth.do" enctype="multipart/form-data">
+                                            <div class="rolebox">
+                                                <div class="tit_r">
+                                                    <!-- <div class="item"><input type="checkbox" name="checkedAll" class="input_check"  /> 应用名称</div> -->
+                                                    <div class="item"><input type="checkbox" class="input_check checkAllOper" /> 模塊名稱
+                                                    </div>
+                                                    <div class="item">操作</div>
+                                                    <div class="item">數據範圍</div>
+                                                </div>
+                                                <input type="hidden" name="token" value="a381c05f-0375-46ae-8db2-2b12e7c8e3d8" />
+                                                <input type="hidden" name="menuId" value="4" />
+                                                <input type="hidden" name="id" value="16" />
+                                                <input type="hidden" name="applicationId" value="18" />
+                                                <div class="role postAuthHtml">
+
+                                                </div>
+                                            </div>
+                                            <div class="subbox">
+                                                <input type="submit" value="保存" class="submit" />
+                                                <input type="button" value="取消" class="cancel xboxClose_btn" />
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </article>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(function() {
+                popResize = function() {
+                    $('.popup_out .container_side .scrollbar').css('height', contHeight - 116 - 2);
+                    $('.popup_out .container_main .scrollbar').css('height', contHeight - 116 - 2);
+                }
+                popResize();
+            })
+
+            function getPostAuthHtml(applicationId) {
+                $.ajax({
+                    type: 'get',
+                    url: "./getAuthHtml.json/json",
+                    data: {
+                        "m": Math.random(),
+                        "applicationId": applicationId,
+                        "postId": 16
+                    },
+                    dataType: 'json',
+                    beforeSend: function(xhr, settings) {
+
+                    },
+                    complete: function(xhr, status) {},
+                    success: function(data, status, xhr) {
+                        $('input[name=applicationId]').val(applicationId);
+                        $('.postAuthHtml').html(data.postAuthHtml);
+                        $(".input_check").iCheck({
+                            checkboxClass: "icheckbox_square-blue",
+                            radioClass: 'icheckbox_square-blue'
+                        });
+                        //全选
+                        $('.service').on('ifChanged', function(event) {
+                            var obj = $(this);
+                            changeService(obj);
+                        })
+
+                        $('.module').on('ifChanged', function(event) {
+                            var obj = $(this);
+                            changeModule(obj);
+                        })
+                        $('.checkAllOper').on('ifChanged', function(event) {
+
+                            if ($(this).prop("checked")) { // 全选
+                                $('.service').iCheck("check");
+                            } else { // 取消全选
+                                $('.service').iCheck("uncheck");
+                            }
+                        });
+
+                        $('.postAuthHtml .item_tit').prepend('<span class="ico"></span>');
+                        $('.postAuthHtml .item_tit .ico').click(function() {
+                            $(this).parent().toggleClass('item_tit_on');
+                            $(this).parent().next('.rolein').slideToggle();
+                        })
+
+                    },
+                    error: function(data, status, xhr) {
+                        layer.alert('資料異常，請刷新頁面後重試', {
+                            icon: 2,
+                            skin: 'layer-ext-moon'
+                        });
+                    }
+                });
+            }
+
+            function changeService(obj) {
+                if ($(obj).prop('checked')) {
+                    $(obj).parents('.item_tit').next('.rolein').find('.module:not([disabled="disabled"])').iCheck("check");
+                } else {
+                    $(obj).parents('.item_tit').next('.rolein').find('.module:not([disabled="disabled"])').iCheck("uncheck");
+                }
+            }
+
+            function changeModule(obj) {
+                if ($(obj).prop('checked')) {
+                    $(obj).parents('ul').find('.operating').iCheck("check");
+                } else {
+                    $(obj).parents('ul').find('.operating').iCheck("uncheck");
+                }
+            }
+            $(document).ready(function() {
+
+
+                var appId = 18;
+                if (appId != 0) {
+                    getPostAuthHtml(appId);
+                }
+
+                $('.applicationList').jstree({
+                    'core': {
+                        'data': {
+                            "url": "./getApplicationList.json",
+                            "dataType": "json" // needed only if you do not supply JSON headers
+                        }
+                    },
+                    "types": {
+                        "default": {
+                            //'icon' : false
+                            //"icon" : "treeicon treeicon-flash"
+                        },
+                        "person": {
+                            "icon": "treeicon treeicon-file"
+                        }
+                    },
+                    "search": {
+                        "show_only_matches": true,
+                        "show_only_matches_children": true
+                    },
+                    "plugins": [
+                        "types", "wholerow", "search"
+                    ]
+                });
+
+                $('.applicationList').on("click.jstree", function(event) {
+                    var eventNodeName = event.target.nodeName;
+                    if (eventNodeName == 'INS') {
+                        return;
+                    } else if (eventNodeName == 'A') {
+                        var $subject = $(event.target).parent();
+                        if ($subject.find('ul').length > 0) {} else {
+                            //选择的id值
+                            var applicationId = $(event.target).parents('li').attr('id');
+                            getPostAuthHtml(applicationId);
+                        }
+                    }
+                });
+
+
+
+
+                $('#myform').find(':submit').removeAttr('disabled');
+                $('#myform').find(':submit').val('確認');
+
+                $(".input_check").iCheck({
+                    checkboxClass: "icheckbox_square-blue",
+                    radioClass: 'icheckbox_square-blue'
+                });
+
+                $("#myform").validate({
+                    submitHandler: function(form) {
+                        submitForm(form, function(data) {})
+                            // 			$('#myform').find(':submit').attr('disabled', 'disabled');
+                            // 			$('#myform').find(':submit').val('保存中...');
+
+                        // 			form.submit();
+                    }
+                });
+
+            });
+        </script>
+
+
+    </div>
+    <script type="text/javascript">
+        $('.help-tips').each(function() {
+            $(this).mouseover(function() {
+                layer.tips($(this).attr('data-title'), $(this), {
+                    time: 0,
+                    skin: 'layui-layer-tips_1'
+                });
+                console.log(1)
+            }).mouseout(function() {
+                layer.closeAll('tips');
+            })
+        })
+    </script>
+</body>
+
+</html>

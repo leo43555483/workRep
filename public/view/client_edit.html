@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>數據中心</title>
+    <meta name="keywords" content="數據中心" />
+    <meta name="description" content="數據中心" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <script type="text/javascript" src="/wm_dc/media/admin/inc/icheck.min.js?20180928"></script>
+
+    <script>
+        var _preservation = "保存中";
+        var _confirmation = "確認";
+        var _thereIsAnUnknownErrorPleaseTryAgainLater = "資料異常，請刷新頁面後重試";
+    </script>
+
+</head>
+
+<body>
+    <div class="_wrapper">
+        <div class="popup_out">
+            <form role="form" method="post" id="myform" action="/wm_dc/admin/oauth2Client/update.do" enctype="multipart/form-data">
+                <input type="hidden" name="token" value="f37f727e-72a1-4aab-ab7a-b5df4c429840" />
+                <input type="hidden" name="menuId" value="71" />
+                <div class="poptit"><span class="t">編輯客戶端</span></div>
+                <div class="popcontent">
+                    <ul class="formlist">
+                        <input type="hidden" name="id" value="1" />
+                        <li class="item">
+                            <div class="item_in">
+                                <span class="label"><span class="must">*</span>客戶端名稱</span>
+                                <input type="text" name="clientName" class="input_text  required" placeholder="" maxlength="50" value="公文流转">
+                            </div>
+                        </li>
+                        <li class="item">
+                            <div class="item_in">
+                                <span class="label"><span class="must">*</span>備注</span>
+                                <textarea name="remark" class="textarea  required" maxlength="50">公文流转a</textarea>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="subbox">
+                        <input type="submit" value="確認" class="submit" />
+                        <input type="button" value="取消" class="cancel xboxClose_btn" />
+                    </div>
+                </div>
+            </form>
+        </div>
+        <script type="text/javascript">
+            $(function() {
+                $(".userinfo .item select").SumoSelect();
+            })
+
+            $(document).ready(function() {
+                $('#myform').find(':submit').removeAttr('disabled');
+                $('#myform').find(':submit').val('確認');
+
+                $("#myform").validate({
+                    rules: {
+                        clientName: {
+                            remote: {
+                                type: "POST",
+                                url: "/wm_dc/admin/oauth2Client/isExist.ajax",
+                                data: {
+                                    notId: 1,
+                                    code: function() {
+                                        return $('input[name=clientName]').val();
+                                    },
+                                    m: Math.random()
+                                }
+                            }
+                        }
+                    },
+                    messages: {
+                        clientName: {
+                            remote: "該客戶端已存在"
+                        }
+                    },
+                    submitHandler: function(form) {
+                        $('#myform').find(':submit').attr('disabled', 'disabled');
+                        $('#myform').find(':submit').val('保存中...');
+
+                        form.submit();
+                    }
+                });
+            });
+        </script>
+
+
+    </div>
+    <script type="text/javascript">
+        $('.help-tips').each(function() {
+            $(this).mouseover(function() {
+                layer.tips($(this).attr('data-title'), $(this), {
+                    time: 0,
+                    skin: 'layui-layer-tips_1'
+                });
+                console.log(1)
+            }).mouseout(function() {
+                layer.closeAll('tips');
+            })
+        })
+    </script>
+</body>
+
+</html>

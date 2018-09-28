@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>添加岗位</title>
+        <!-- <link rel="Shortcut Icon" href="${ctx }/favicon.ico" type="image/x-icon" /> -->
+        <link rel="stylesheet" href="../media/admin/inc/global.css" type="text/css" />
+        <link rel="stylesheet" href="../media/admin/inc/style.css" type="text/css" />
+        <link rel="stylesheet" href="../media/admin/font/iconfont.css" type="text/css" />
+        <script type="text/javascript" src="../media/admin/inc/jquery.min.js"></script>
+    
+        <link rel="stylesheet" href="../media/admin/inc/bootstrap/css/bootstrap.css" type="text/css" />
+        <script type="text/javascript" src="../media/admin/inc/bootstrap/js/bootstrap.js"></script>
+    
+        <!-- <link rel="stylesheet" href="../media/admin/inc/jquery.xinbox.css" type="text/css" />
+        <script type="text/javascript" src="../media/admin/inc/jquery.xinbox.js"></script> -->
+        <!-- 
+        <script>
+            var _preservation = "<fmt:message key='preservation'/>";
+            var _confirmation = "<fmt:message key='confirmation'/>";
+            var _thereIsAnUnknownErrorPleaseTryAgainLater = "<fmt:message key='_thereIsAnUnknownErrorPleaseTryAgainLater'/>";
+        </script> -->
+    
+        <link rel="stylesheet" href="../media/admin/inc/themes/default/style.min.css" />
+        <script src="../media/admin/inc/jstree.min.js"></script>
+    
+        <link rel="stylesheet" href="../media/admin/inc/datatables.css" type="text/css" />
+        <script type="text/javascript" src="../media/admin/inc/datatables.min.js"></script>
+    
+    
+        <script type="text/javascript" src="../media/common/jquery.form.js"></script>
+        <script type="text/javascript" src="../media/common/jquery.validate.js"></script>
+        <script type="text/javascript" src="../media/common/jquery.validate.extend.js"></script>
+    
+        <!-- <script type="text/javascript" src="../media/media/common/My97DatePicker4.5/WdatePicker.js"></script> -->
+    
+        <link rel="stylesheet" href="../media/admin/inc/colorbox.css" type="text/css" />
+        <script type="text/javascript" src="../media/admin/inc/jquery.colorbox.js"></script>
+    
+        <link rel="stylesheet" href="../media/admin/inc/jquery.sumoselect.css" type="text/css" />
+        <script type="text/javascript" src="../media/admin/inc/jquery.sumoselect.js"></script>
+    
+    
+        <script type="text/javascript" src="../media/admin/inc/layer/layer.js"></script>
+        <script type="text/javascript" src="../media/admin/inc/func.js"></script>
+    
+        <script type="text/javascript" src="../media/admin/inc/icheck.min.js"></script>
+    
+    </head>
+<body>
+    <div class="popup_out">
+        <form role="form" method="post" id="myform" action="" enctype="multipart/form-data">
+            <input type="hidden" name="token" value="${sessionScope.token}" />
+            <input type="hidden" name="menuId" value="${curMenu.id}" />
+            <div class="poptit"><span class="t">
+                    增加應用</span></div>
+            <div class="popcontent">
+                <ul class="formlist">
+                    <li class="item">
+                        <div class="item_in">
+                            <span class="label">
+                                <span class="must"></span>
+                                    應用名稱
+                            </span>
+                            <input type="text" name="name" class="input_text  required" placeholder="" maxlength="50" value="">
+                        </div>
+                    </li>
+                    <li class="item">
+                        <div class="item_in">
+                            <span class="label">
+                                <span class="must"></span>
+                                應用代碼
+                            </span>
+                            <input type="text" name="name" class="input_text  required" placeholder="" maxlength="50" value="A-">
+                        </div>
+                    </li>
+                </ul>
+                <div class="subbox">
+                    <input type="submit" value="確認" class="submit" />
+                    <input type="button" value="取消" class="cancel xboxClose_btn" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $(".userinfo .item select").SumoSelect();
+        })
+
+        $(document).ready(function () {
+            $('#myform').find(':submit').removeAttr('disabled');
+            $('#myform').find(':submit').val('確認');
+
+            $("#myform").validate({
+                rules: {
+                    code: {
+                        remote: {
+                            type: "POST",
+                            url: "${ctx}/admin/application/isExist.ajax",
+                            data: {
+                                notId: -1,
+                                code: function () {
+                                    return $('input[name=code]').val();
+                                },
+                                m: Math.random()
+                            }
+                        }
+                    }
+                },
+                messages: {
+                    code: {
+                        remote: "不能出現重複編碼"
+                    }
+                },
+                submitHandler: function (form) {
+                    $('#myform').find(':submit').attr('disabled', 'disabled');
+                    $('#myform').find(':submit').val('<fmt:message key="preservation" />...');
+
+                    form.submit();
+                }
+            });
+        });					
+    </script>
+    <script type="text/javascript">
+        $('.help-tips').each(function () {
+            $(this).mouseover(function () {
+                layer.tips($(this).attr('data-title'), $(this), {
+                    time: 0,
+                    skin: 'layui-layer-tips_1'
+                });
+                console.log(1)
+            }).mouseout(function () {
+                layer.closeAll('tips');
+            })
+        })
+    </script>
+</body>
+</html>

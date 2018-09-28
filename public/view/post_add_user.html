@@ -1,0 +1,335 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>數據中心</title>
+    <meta name="keywords" content="數據中心" />
+    <meta name="description" content="數據中心" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <script type="text/javascript" src="/wm_dc/media/admin/inc/icheck.min.js?20180928"></script>
+
+    <script>
+        var _preservation = "保存中";
+        var _confirmation = "確認";
+        var _thereIsAnUnknownErrorPleaseTryAgainLater = "資料異常，請刷新頁面後重試";
+    </script>
+
+</head>
+
+<body>
+    <div class="_wrapper">
+        <div class="popup_out">
+            <form method="post" id="myform" action="/wm_dc/admin/post/save.do" enctype="multipart/form-data">
+                <input type="hidden" name="token" value="b69bc12f-39ad-4e23-a32f-4779b9ee664d" />
+                <input type="hidden" name="menuId" value="4" />
+                <div class="poptit"><span class="t">添加崗位</span></div>
+                <div class="popcontent">
+                    <ul class="formlist">
+                        <li class="item half">
+                            <div class="item_in">
+                                <span class="label"><span class="must">*</span>崗位編碼</span>
+                                <input type="text" name="code" class="input_text  required" placeholder="" maxlength="50" value="">
+                            </div>
+                        </li>
+                        <li class="item half">
+                            <div class="item_in">
+                                <span class="label"><span class="must">*</span>崗位名稱</span>
+                                <input type="text" name="name" class="input_text  required" placeholder="" maxlength="50" value="">
+
+                            </div>
+                        </li>
+                        <li class="item half">
+                            <div class="item_in">
+                                <label class="label"><span class="must">*</span>角色</label>
+                                <div class="select_tree">
+                                    <span class="title"><span class="t">請選擇</span><span class="ico"></span></span>
+                                    <div class="treebox">
+                                        <div id="role_create"></div>
+                                    </div>
+
+                                </div>
+                                <input type="hidden" name="roleId" value="" id="roleId" class="required" />
+                            </div>
+                        </li>
+
+                        <li class="item half">
+                            <div class="item_in">
+                                <label class="label">上級崗位</label>
+
+                                <div class="select_tree">
+                                    <span class="title"><span class="t">請選擇</span><span class="ico"></span></span>
+                                    <div class="treebox">
+                                        <div id="parent_create"></div>
+                                    </div>
+
+                                </div>
+
+                                <input type="hidden" name="parentId" value="-1" id="parentId" />
+                                <span class="help-tips" data-title="請先選擇角色"></span>
+                            </div>
+                        </li>
+                        <li class="item">
+                            <div class="item_in">
+                                <label class="label">下級崗位</label>
+                                <div class="select_tree">
+                                    <span class="title"><span class="t">請選擇</span><span class="ico"></span></span>
+                                    <div class="treebox">
+                                        <div id="child_create"></div>
+                                    </div>
+
+                                </div>
+                                <input type="hidden" name="childIds" value="" />
+                            </div>
+                        </li>
+                        <li class="item">
+                            <div class="item_in">
+                                <span class="label">崗位描述</span>
+                                <textarea name="intro" class="textarea " maxlength="50"></textarea>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="subbox">
+                        <input type="submit" value="確認" class="submit" />
+                        <input type="button" value="取消" class="cancel xboxClose_btn" />
+                    </div>
+                </div>
+            </form>
+        </div>
+        <script type="text/javascript">
+            var parentTree = null;
+            var childTree = null;
+            $(function() {
+                //$(".userinfo .item select").SumoSelect();
+                $('#role_create').jstree({
+                    'core': {
+                        'data': {
+                            "url": "/wm_dc/admin/role/getList.ajax?m=" + Math.random(),
+                            "method": "POST",
+                            "dataType": "json" // needed only if you do not supply JSON headers
+                        }
+                    },
+                    "types": {
+                        "default": {
+                            'icon': false
+                        }
+                    },
+                    "search": {
+                        "show_only_matches": true,
+                        "show_only_matches_children": true
+                    },
+                    "plugins": [
+                        "types", "wholerow", "search"
+                    ]
+                });
+
+                $("#role_create").on("loaded.jstree", function(event, data) {
+                    // 展开所有节点
+                    $('#role_create').jstree('open_all');
+                    $('#role_create').jstree('close_all');
+
+                    // 选中单个节点
+                    $("#role_create").jstree('check_node', '-1');
+                    // 展开指定节点
+                    //data.instance.open_node(1);     // 单个节点 （1 是顶层的id）
+                    //data.instance.open_node([1,2,3,4]); // 多个节点 (展开多个几点只有在一次性装载后所有节点后才可行
+                });
+
+
+                $('#role_create').on("changed.jstree", function(e, data) {
+                    //可能action是其它东西
+                    if (data.action == "select_node") {
+                        $('input[name=roleId]').val(data.node.id);
+
+
+                        $('#role_create').parents('.select_tree').find('.title .t').text(data.node.text);
+                        $('.select_tree').find('.treebox').hide();
+
+                        //销毁
+                        if (parentTree != null) {
+                            //清空
+                            $('#parentId').val('-1');
+
+                            parentTree.jstree(true).settings.core.data.url = "/wm_dc/admin/post/getListByRole.ajax?isShowNone=1&roleId=" + data.node.id;
+                            parentTree.jstree(true).refresh();
+
+                            $('#parent_create').parents('.select_tree').find('.title .t').text('请选择');
+                            $('.select_tree').find('.treebox').hide();
+                        }
+
+                        //销毁
+                        if (childTree != null) {
+                            //清空
+                            $("input[name='childIds']").val('');
+
+                            childTree.jstree(true).settings.core.data.url = "/wm_dc/admin/post/getRoleChildPostList.ajax?isShowNone=0&roleId=" + data.node.id;
+                            childTree.jstree(true).refresh();
+
+                            $('#child_create').parents('.select_tree').find('.title .t').text('请选择');
+                        }
+                    }
+
+
+
+                });
+
+
+                parentTree = $('#parent_create').jstree({
+                    'core': {
+                        'data': {
+                            "url": "/wm_dc/admin/post/getListByRole.ajax?isShowNone=1&roleId=-1&m=" + Math.random(),
+                            "method": "POST",
+                            "dataType": "json" // needed only if you do not supply JSON headers
+                        }
+                    },
+                    "types": {
+                        "default": {
+                            'icon': false
+                        }
+                    },
+                    "search": {
+                        "show_only_matches": true,
+                        "show_only_matches_children": true
+                    },
+                    "plugins": [
+                        "types", "wholerow", "search"
+                    ]
+                });
+
+                $("#parent_create").on("loaded.jstree", function(event, data) {
+                    // 展开所有节点
+                    $('#parent_create').jstree('open_all');
+                    $('#parent_create').jstree('close_all');
+
+                    // 选中单个节点
+                    $("#parent_create").jstree('check_node', '-1');
+                    // 展开指定节点
+                    //data.instance.open_node(1);     // 单个节点 （1 是顶层的id）
+                    //data.instance.open_node([1,2,3,4]); // 多个节点 (展开多个几点只有在一次性装载后所有节点后才可行
+                });
+
+
+
+                $('#parent_create').on("changed.jstree", function(e, data) {
+                    //可能action是其它东西
+                    if (data.action == "select_node") {
+                        $('input[name=parentId]').val(data.node.id);
+                        $('#parent_create').parents('.select_tree').find('.title .t').text(data.node.text);
+                        $('.select_tree').find('.treebox').hide();
+                    }
+                });
+
+
+                childTree = $('#child_create').jstree({
+                    'core': {
+                        'data': {
+                            "url": "/wm_dc/admin/post/getListByRole.ajax?isShowNone=1&roleId=-1&m=" + Math.random(),
+                            "method": "POST",
+                            "dataType": "json" // needed only if you do not supply JSON headers
+                        }
+                    },
+                    "types": {
+                        "default": {
+                            'icon': false
+                        }
+                    },
+                    "checkbox": {
+                        "three_state": false,
+                    },
+                    "plugins": [
+                        "types", "wholerow", "checkbox"
+                    ]
+                });
+
+                $("#child_create").on("loaded.jstree", function(event, data) {
+                    // 展开所有节点
+                    $('#child_create').jstree('open_all');
+                    $('#child_create').jstree('close_all');
+
+                    // 选中单个节点
+                    $("#child_create").jstree('check_node', '-1');
+                    // 展开指定节点
+                    //data.instance.open_node(1);     // 单个节点 （1 是顶层的id）
+                    //data.instance.open_node([1,2,3,4]); // 多个节点 (展开多个几点只有在一次性装载后所有节点后才可行
+                });
+
+
+
+                $('#child_create').on("changed.jstree", function(e, data) {
+                    var nodeId = [];
+                    var nodeText = [];
+                    for (var i = 0; i < data.selected.length; i++) {
+                        nodeText.push(data.instance.get_node(data.selected[i]).text);
+                        nodeId.push(data.instance.get_node(data.selected[i]).id);
+                    }
+                    $("input[name='childIds']").val(nodeId);
+
+                    $('#child_create').parents('.select_tree').find('.title .t').text(nodeText);
+                });
+
+
+            })
+
+            $(document).ready(function() {
+                $('#myform').find(':submit').removeAttr('disabled');
+                $('#myform').find(':submit').val('確認');
+
+                $("#myform").validate({
+                    ignore: '',
+                    rules: {
+                        childId: {
+                            notEqualTo: "#parentId"
+                        },
+                        code: {
+                            remote: {
+                                type: "POST",
+                                url: "/wm_dc/admin/post/isExist.ajax",
+                                data: {
+                                    code: function() {
+                                        return $('input[name=code]').val();
+                                    },
+                                    m: Math.random()
+                                }
+                            }
+                        }
+                    },
+                    messages: {
+                        childId: {
+                            notEqualTo: "下級崗位不允許與上級崗位相同"
+                        },
+                        code: {
+                            remote: "不能出現重複編碼"
+                        }
+                    },
+                    submitHandler: function(form) {
+                        submitForm(form, function(data) {
+                                $('#posttree').jstree(true).refresh();
+                                loadView(data.id);
+                            })
+                            /* $('#myform').find(':submit').attr('disabled', 'disabled');
+                        $('#myform').find(':submit').val('保存中...');
+        
+                        form.submit(); */
+                    }
+                });
+            });
+        </script>
+
+
+    </div>
+    <script type="text/javascript">
+        $('.help-tips').each(function() {
+            $(this).mouseover(function() {
+                layer.tips($(this).attr('data-title'), $(this), {
+                    time: 0,
+                    skin: 'layui-layer-tips_1'
+                });
+                console.log(1)
+            }).mouseout(function() {
+                layer.closeAll('tips');
+            })
+        })
+    </script>
+</body>
+
+</html>

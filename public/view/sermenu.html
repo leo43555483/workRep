@@ -1,0 +1,80 @@
+<div class="panel panel-box">
+    <div class="panel-heading tit_big">
+        <span class="t">服務列表</span>
+        <div class="filter">
+            <div class="item">
+
+                <a href="./service_vision.html" class="reset xin_box">APP版本</a>
+                <a href="./serve_create.html" class="reset xin_box">添加服務</a>
+
+            </div>
+        </div>
+    </div>
+    <div class="panel-body scrollbar">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tablelist data_table">
+            <thead>
+                <tr>
+                    <th>服務名稱</th>
+                    <th width="150">注冊時間</th>
+                    <th width="150">注冊人</th>
+                    <th width="100">添加服務操作</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+<script>
+    $(function () {
+        pageResize();
+
+
+        var tablelist = $('.data_table').DataTable({
+            "language": {
+                "url": "./media/admin/inc/datatables_Chinese.json"
+            },
+            //格式操作列
+            "columnDefs": [
+                {
+                    // The `data` parameter refers to the data for the cell (defined by the
+                    // `data` option, which defaults to the column being worked with, in
+                    // this case `data: 0`.
+                    "render": function (data, type, row) {
+                        var btn_html = "";
+
+                        btn_html += "<div class='operatebtn'>";
+                        btn_html += "	<a href='#' class='ctrl'></a>";
+                        btn_html += "	<ul>";
+
+                        btn_html += "		<li><a href='./service_edit.html' class='see_btn xin_box'>編輯</a></li>";
+
+                        btn_html += "		<li><a onclick=\"layerConfirm('您確定要" + (row[4] == 1 ? '注銷' : '啓用') + "該服務嗎？','/wm_dc/admin/service/updateIsReleased/" + data + ".do?menuId=2')\" class='see_btn'>" + (row[4] == 1 ? '注銷' : '啓用') + "</a></li>";
+
+                        btn_html += "	</ul>";
+                        btn_html += "</div>";
+
+
+                        return btn_html;
+                    },
+                    "targets": 3
+                }
+            ],
+            //关闭搜索
+            "searching": false,
+            //关闭排序
+            "bSort": false,
+            "processing": true,
+            "serverSide": true,
+            "dom": 'rft<"t_b"li<"t_b_r"p>>',
+            "ajax": {
+                "url": "./serveList.json/json",
+                "type": "POST"
+            }
+        });
+        //渲染完成刷新 xinBox
+        tablelist.on('draw', function () {
+            $(".xin_box").colorbox(colorbox_option);
+        });
+
+
+    })
+</script>
